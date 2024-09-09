@@ -2,7 +2,7 @@ def calculate_total(products):
     total = 0
 
     for product in products:
-        total += product["price"]
+        total += product["price"]*(1 - product["disccount"]/100) 
     return total
 
 def test_calculate_total_with_empty_list():
@@ -12,23 +12,26 @@ def test_calculate_total_with_single_product():
     products=[
         {
             "name" : "Notebook", 
-            "price" : 5
+            "price" : 5,
+            "disccount" : 10
         }
     ]
-    assert calculate_total(products) == 5
+    assert calculate_total(products) == 4.5
 
 def test_calculate_total_with_multiple_product():
     products=[
         {
             "name" : "Notebook", 
-            "price" : 10
+            "price" : 10,
+            "disccount" : 10
         },
         {
             "name" : "Pen", 
-            "price" : 2
+            "price" : 2,
+            "disccount" : 10
         }
     ]
-    assert calculate_total(products) == 12
+    assert calculate_total(products) == 10.8
 
 if __name__ == "__main__":
     test_calculate_total_with_empty_list()  # This will run the test    
