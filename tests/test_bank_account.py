@@ -2,7 +2,7 @@ import unittest, os
 
 from src.bank_account import BankAccount
 
-class BankAccountTets(unittest.TestCase):   # Clase con métodos de prueba
+class BankAccountTests(unittest.TestCase):   # Clase con métodos de prueba
 
     def setUp(self):    # método a ejecutar antes de cada prueba
         self.account = BankAccount(balance = 1000, log_file="log_transaction.txt")
