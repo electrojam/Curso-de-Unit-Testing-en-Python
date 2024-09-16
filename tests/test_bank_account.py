@@ -1,5 +1,6 @@
 import unittest, os
-
+from unittest.mock import patch
+from src.exceptions import InsufficientFundsError
 from src.bank_account import BankAccount
 
 class BankAccountTests(unittest.TestCase):   # Clase con métodos de prueba
@@ -34,3 +35,17 @@ class BankAccountTests(unittest.TestCase):   # Clase con métodos de prueba
         assert self.count_lines(self.account.log_file) == 1
         self.account.deposit(500)
         assert self.count_lines(self.account.log_file) == 2
+    
+    def test_withdraw_raises_error_when_insuffcient_funds(self):
+        with self.assertRaises(InsufficientFundsError):
+            self.account.withdraw(2000)
+    
+    @patch("src.bank_account.datetime")
+    def test_withdraw_during_business_hours(self, mock_datetime):
+        mock_datetime.now.return_value.hour = 10
+        self.account.withdraw(100)
+
+    @patch("src.bank_account.datetime")
+    def test_withdraw_during_business_hours(self, mock_datetime):
+        mock_datetime.now.return_value.hour = 7
+        self.account.withdraw(100)

@@ -1,3 +1,6 @@
+from src.exceptions import InsufficientFundsError, WithdrawalTimeRestrictionError
+from datetime import datetime
+
 class BankAccount:
     def __init__(self, balance=0, log_file=None):
         self.balance = balance
@@ -16,6 +19,13 @@ class BankAccount:
         return self.balance
 
     def withdraw(self, amount):
+        now = datetime.now()    # obtenenmos hora actual
+        if now.hour < 8 or now.hour > 17:  # si hora de retiro está por fuera del lapso lanzamos error o excepción
+            raise WithdrawalTimeRestrictionError("Withdrawals are only allowed from 8am to 5pm.")
+        if amount > self.balance:
+            raise InsufficientFundsError(
+                f"Withdrawal of {amount} exceeds balance {self.balance}"
+            )
         if amount > 0:
             self.balance -= amount
             self.log_transaction(f"Withdrawed {amount}.  New balance is: {self.balance}")
