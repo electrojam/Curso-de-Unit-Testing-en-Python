@@ -8,7 +8,8 @@ def get_location(ip):   # función para consultar información de una ip
     return {
         "country": data["countryName"],
         "region": data["regionName"],
-        "city" : data["cityName"]
+        "city" : data["cityName"],
+        "code" : data["countryCode"]
     }
 
 if __name__ == "__main__":
