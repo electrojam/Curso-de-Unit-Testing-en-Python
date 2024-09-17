@@ -15,12 +15,14 @@ class BankAccountTests(unittest.TestCase):   # Clase con métodos de prueba
     def count_lines(self, filename):    # Método para contar líneas del log (este método no es prueba)
         with open(filename, "r") as f:
             return len(f.readlines())
-
+    
     def test_deposit(self): # prueba depósito
         new_balance = self.account.deposit(500)
         self.assertEqual(new_balance, 1500, "Balance is not iqual")
 
-    def test_withdraw(self):    # prueba retiro
+    @patch("src.bank_account.datetime")
+    def test_withdraw(self, mock_datetime):    # prueba retiro
+        mock_datetime.now.return_value.hour = 10
         new_balance = self.account.withdraw(200)
         self.assertEqual(new_balance, 800, "Balance is not iqual")
 
@@ -36,7 +38,9 @@ class BankAccountTests(unittest.TestCase):   # Clase con métodos de prueba
         self.account.deposit(500)
         assert self.count_lines(self.account.log_file) == 2
     
-    def test_withdraw_raises_error_when_insuffcient_funds(self):
+    @patch("src.bank_account.datetime")
+    def test_withdraw_raises_error_when_insuffcient_funds(self, mock_datetime):
+        mock_datetime.now.return_value.hour = 10
         with self.assertRaises(InsufficientFundsError):
             self.account.withdraw(2000)
     
