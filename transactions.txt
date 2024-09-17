@@ -1,0 +1,24 @@
+Cuenta creada
+Deposited 100.  New balance is: 1100
+Cuenta creada
+Deposited 3000.  New balance is: 4000
+Cuenta creada
+Deposited 4500.  New balance is: 5500
+Cuenta creada
+Deposited 100.  New balance is: 1100
+Cuenta creada
+Deposited 3000.  New balance is: 4000
+Cuenta creada
+Deposited 4500.  New balance is: 5500
+Cuenta creada
+Deposited 100.  New balance is: 1100
+Cuenta creada
+Deposited 3000.  New balance is: 4000
+Cuenta creada
+Deposited 4500.  New balance is: 5500
+Cuenta creada
+Deposited 100.  New balance is: 1100
+Cuenta creada
+Deposited 3000.  New balance is: 4000
+Cuenta creada
+Deposited 4500.  New balance is: 5500
